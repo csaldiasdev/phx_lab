@@ -12,9 +12,17 @@ defmodule PhxLab.Application do
       # Start the PubSub system
       {Phoenix.PubSub, name: PhxLab.PubSub},
       # Start the Endpoint (http/https)
-      PhxLabWeb.Endpoint
+      PhxLabWeb.Endpoint,
       # Start a worker by calling: PhxLab.Worker.start_link(arg)
       # {PhxLab.Worker, arg}
+
+      # PRESENCE ==============================
+      PhxLabWeb.Presence,
+
+      # SCL STOP CONFIGS ======================
+      {PhxLab.ChannelWatcher, :stop},
+      PhxLab.SclStop.KV.StopPredictionKV,
+      PhxLab.SclStop.KV.StopProcPidKV
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html

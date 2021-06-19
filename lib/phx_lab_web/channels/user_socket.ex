@@ -2,7 +2,7 @@ defmodule PhxLabWeb.UserSocket do
   use Phoenix.Socket
 
   ## Channels
-  # channel "room:*", PhxLabWeb.RoomChannel
+  channel "scl_stop/stop:*", PhxLabWeb.Channels.SclStop.StopChannel
 
   # Socket params are passed from the client and can
   # be used to verify and authenticate a user. After
@@ -17,7 +17,14 @@ defmodule PhxLabWeb.UserSocket do
   # performing token verification on connect.
   @impl true
   def connect(_params, socket, _connect_info) do
-    {:ok, socket}
+    unique_id =
+      make_ref()
+      |> :erlang.ref_to_list()
+      |> List.to_string()
+
+    {:ok, assign(socket, :user_id, unique_id)}
+
+    # {:ok, socket}
   end
 
   # Socket id's are topics that allow you to identify all sockets for a given user:
