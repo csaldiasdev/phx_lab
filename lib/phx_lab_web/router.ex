@@ -16,7 +16,11 @@ defmodule PhxLabWeb.Router do
   scope "/", PhxLabWeb do
     pipe_through :browser
 
-    get "/", PageController, :index
+    # Original route
+    # get("/", PageController, :index)
+
+    # The new react driven route
+    get("/", PageController, :pwa)
   end
 
   # Other scopes may use custom stacks.
