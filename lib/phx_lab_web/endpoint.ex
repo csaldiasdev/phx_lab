@@ -28,7 +28,7 @@ defmodule PhxLabWeb.Endpoint do
 
   plug Plug.Static,
     at: "/",
-    from: {:phx_lab, "priv/static/build"},
+    from: {:phx_lab, "priv/static/dist/phx-lab"},
     gzip: false,
     only: ~w(asset-manifest.json favicon.ico manifest.json service-worker.js)
 
