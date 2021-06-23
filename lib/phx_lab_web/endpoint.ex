@@ -29,8 +29,8 @@ defmodule PhxLabWeb.Endpoint do
   plug Plug.Static,
     at: "/",
     from: {:phx_lab, "priv/static"},
-    gzip: false,
-    only: ~w(css fonts images js favicon.ico robots.txt)
+    gzip: false
+  #  only: ~w(css fonts images js favicon.ico robots.txt)
 
   # plug Plug.Static,
   #   at: "/static",
