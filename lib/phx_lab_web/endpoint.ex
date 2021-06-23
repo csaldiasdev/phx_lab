@@ -28,14 +28,14 @@ defmodule PhxLabWeb.Endpoint do
 
   plug Plug.Static,
     at: "/",
-    from: {:phx_lab, "priv/static/dist/phx-lab"},
+    from: {:phx_lab, "priv/static"},
     gzip: false,
     only: ~w(asset-manifest.json favicon.ico manifest.json service-worker.js)
 
-  plug Plug.Static,
-    at: "/static",
-    from: {:phx_lab, "priv/static/build/static"},
-    gzip: false
+  # plug Plug.Static,
+  #   at: "/static",
+  #   from: {:phx_lab, "priv/static/build/static"},
+  #   gzip: false
 
   # Code reloading can be explicitly enabled under the
   # :code_reloader configuration of your endpoint.
