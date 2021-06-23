@@ -30,7 +30,7 @@ defmodule PhxLabWeb.Endpoint do
     at: "/",
     from: {:phx_lab, "priv/static"},
     gzip: false,
-    only: ~w(asset-manifest.json favicon.ico manifest.json service-worker.js)
+    only: ~w(css fonts images js favicon.ico robots.txt)
 
   # plug Plug.Static,
   #   at: "/static",
