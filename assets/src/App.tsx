@@ -33,9 +33,13 @@ const useStyles = makeStyles(theme => ({
 
 function App() {
   const classes = useStyles()
+  const wsUrl =
+    process.env.NODE_ENV === 'production'
+      ? 'wss://phxlab.gigalixirapp.com/socket'
+      : 'ws://localhost:4000/socket'
 
   return (
-    <PhxSocketProvider wsUrl='wss://phxlab.gigalixirapp.com/socket'>
+    <PhxSocketProvider wsUrl={wsUrl}>
       <div className={classes.root}>
         <CssBaseline />
         <Router>
