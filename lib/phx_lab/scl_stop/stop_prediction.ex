@@ -9,6 +9,9 @@ defmodule PhxLab.SclStop.Prediction do
   ]
 
   def get_prediction(stop_code) do
+
+    IO.puts("FETCHING DATA FROM STOP: #{stop_code}")
+
     xml_body = ~s"""
     <soapenv:Envelope
       xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"

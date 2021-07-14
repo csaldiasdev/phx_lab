@@ -24,21 +24,15 @@ defmodule PhxLabWeb.Channels.SclStop.StopChannel do
         online_at: inspect(System.system_time(:second))
       })
 
-    if users_in_channel(socket) === 1 do
-      IO.puts("START PREDICTION FOR STOP: #{stop_code}")
+    if PredictionWatcher.running_process(stop_code) === false do
       PredictionWatcher.start_process(stop_code)
     end
 
     {:noreply, socket}
   end
 
-  def handle_in("ping", _payload, socket) do
-    {:reply, {:ok, %{ping: "pong"}}, socket}
-  end
-
   def leave(stop_code, socket) do
     if users_in_channel(socket) === 0 do
-      IO.puts("STOP PREDICTION WITH STOP CODE: #{stop_code}")
       PredictionWatcher.kill_process(stop_code)
     end
   end
