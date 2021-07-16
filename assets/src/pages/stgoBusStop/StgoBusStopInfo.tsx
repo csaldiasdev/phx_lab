@@ -96,7 +96,7 @@ export default function StgoBusStopInfo() {
   const classes = useStyles()
   const channelName = `scl_stop/stop:${stopCode}`
 
-  const [state] = usePhxChannel<StopChannelState>(channelName, reducer, {
+  const [state] = usePhxChannel(channelName, reducer, {
     stopPredictions: [],
   })
 

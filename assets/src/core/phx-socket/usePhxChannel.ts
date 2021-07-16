@@ -2,10 +2,12 @@ import { Socket } from 'phoenix'
 import { useContext, useEffect, useReducer } from 'react'
 import PhxSocketContext from './PhxSocketContext'
 
+// eslint-disable-next-line no-unused-vars
+type PhxChannelReducer<T> = (state: T, action: { event: string; payload: object }) => T
+
 const usePhxChannel = <T>(
   topic: string,
-  // eslint-disable-next-line no-unused-vars
-  reducer: (state: T, action: { event: string; payload: object }) => T,
+  reducer: PhxChannelReducer<T>,
   initialState: T
 ) => {
   const socket = useContext(PhxSocketContext) as Socket
