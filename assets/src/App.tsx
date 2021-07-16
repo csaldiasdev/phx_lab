@@ -1,9 +1,4 @@
-import {
-  Container,
-  CssBaseline,
-  makeStyles,
-  Typography,
-} from '@material-ui/core'
+import { CssBaseline, makeStyles } from '@material-ui/core'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 
 import Home from './pages/Home'
@@ -20,14 +15,6 @@ const useStyles = makeStyles(theme => ({
   main: {
     marginTop: theme.spacing(8),
     marginBottom: theme.spacing(2),
-  },
-  footer: {
-    padding: theme.spacing(3, 2),
-    marginTop: 'auto',
-    backgroundColor:
-      theme.palette.type === 'light'
-        ? theme.palette.grey[200]
-        : theme.palette.grey[800],
   },
 }))
 
@@ -53,13 +40,6 @@ function App() {
             <StgoBusStopInfo />
           </Route>
         </Router>
-        <footer className={classes.footer}>
-          <Container maxWidth='sm'>
-            <Typography variant='body1'>
-              Phoenix Channels Connection Status :
-            </Typography>
-          </Container>
-        </footer>
       </div>
     </PhxSocketProvider>
   )
