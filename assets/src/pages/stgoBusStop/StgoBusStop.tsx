@@ -45,10 +45,10 @@ export default function StgoBusStop() {
       </AppBar>
       <Container component='main' className={classes.main} maxWidth='sm'>
         <Typography variant='h2' component='h1' gutterBottom>
-          Type you bus stop
+          Enter a bus stop
         </Typography>
         <form noValidate autoComplete='off' onSubmit={onStopSubmit}>
-          <TextField id='standard-basic' label='Standard' name='stopId' />
+          <TextField id='standard-basic' label='Bus Stop' name='stopId' fullWidth/>
         </form>
       </Container>
     </>
