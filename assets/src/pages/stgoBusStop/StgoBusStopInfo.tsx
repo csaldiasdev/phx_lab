@@ -77,13 +77,12 @@ type StopChannelState = {
 const reducer = (
   state: StopChannelState,
   action: { event: string; payload: object }
-) => {
+): StopChannelState => {
   switch (action.event) {
-    case 'stop_prediction': {
+    case 'stop_prediction':
       return {
         stopPredictions: stopChannelPayloadConverter(action.payload),
       }
-    }
     default:
       return state
   }
