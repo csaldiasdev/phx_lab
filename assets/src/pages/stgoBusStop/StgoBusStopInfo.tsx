@@ -70,6 +70,25 @@ const stopChannelPayloadConverter = (payload: { [key: string]: any }) => {
   return typedPayload
 }
 
+type StopChannelState = {
+  stopPredictions: StopInfoProps[]
+}
+
+const reducer = (
+  state: StopChannelState,
+  action: { event: string; payload: object }
+) => {
+  switch (action.event) {
+    case 'stop_prediction': {
+      return {
+        stopPredictions: stopChannelPayloadConverter(action.payload),
+      }
+    }
+    default:
+      return state
+  }
+}
+
 export default function StgoBusStopInfo() {
   const { stopCode } = useParams<{ stopCode: string }>()
 
@@ -77,12 +96,9 @@ export default function StgoBusStopInfo() {
   const classes = useStyles()
   const channelName = `scl_stop/stop:${stopCode}`
 
-  const [channelEvent] = usePhxChannel(channelName)
-
-  const predictions: StopInfoProps[] =
-    channelEvent.event === 'stop_prediction'
-      ? stopChannelPayloadConverter(channelEvent.payload)
-      : []
+  const [state] = usePhxChannel<StopChannelState>(channelName, reducer, {
+    stopPredictions: [],
+  })
 
   return (
     <>
@@ -102,7 +118,7 @@ export default function StgoBusStopInfo() {
       </AppBar>
       <div className={classes.root}>
         <Grid container spacing={2}>
-          {predictions.map(prediction => (
+          {state.stopPredictions.map(prediction => (
             <StopInfo
               key={prediction.serviceCode}
               responseCode={prediction.responseCode}
