@@ -26,6 +26,10 @@ defmodule PhxLabWeb.Channels.SclStop.StopChannel do
 
     if PredictionWatcher.running_process(stop_code) === false do
       PredictionWatcher.start_process(stop_code)
+    else
+      case PredictionWatcher.get_current_stop_state(stop_code) do
+        {:ok, data} -> push(socket, "stop_prediction", data)
+      end
     end
 
     {:noreply, socket}

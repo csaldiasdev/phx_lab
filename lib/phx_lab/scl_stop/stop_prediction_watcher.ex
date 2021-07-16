@@ -1,6 +1,5 @@
 defmodule PhxLab.SclStop.PredictionWatcher do
   # https://thoughtbot.com/blog/long-lived-processes-in-elixir
-  # https://elixirforum.com/t/endless-recursion/10683/6
 
   alias PhxLab.SclStop.Prediction
   alias PhxLab.SclStop.KV.StopPredictionKV
@@ -14,6 +13,8 @@ defmodule PhxLab.SclStop.PredictionWatcher do
     end
 
     Process.sleep(10_000)
+
+    # https://elixirforum.com/t/endless-recursion/10683/6
     run(stop_code)
   end
 
@@ -40,6 +41,13 @@ defmodule PhxLab.SclStop.PredictionWatcher do
     case StopProcPidKV.find(stop_code) do
       {:ok, _} -> true
       _ -> false
+    end
+  end
+
+  def get_current_stop_state(stop_code) do
+    case StopPredictionKV.find(stop_code) do
+      {:ok, data} -> {:ok, data}
+      _ -> {:not_found}
     end
   end
 end
