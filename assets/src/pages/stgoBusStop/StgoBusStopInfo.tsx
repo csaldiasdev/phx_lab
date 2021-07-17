@@ -93,7 +93,7 @@ export default function StgoBusStopInfo() {
 
   const history = useHistory()
   const classes = useStyles()
-  const channelName = `scl_stop/stop:${stopCode}`
+  const channelName = `scl_stop/stop:${stopCode.toUpperCase()}`
 
   const [state] = usePhxChannel(channelName, reducer, {
     stopPredictions: [],
